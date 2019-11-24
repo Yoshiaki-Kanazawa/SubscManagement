@@ -1,0 +1,204 @@
+@charset "utf-8";
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+.base-header {
+  background: #b5cd60;
+  padding: 5px 15px;
+  border-radius: 0 0 10px 10px;
+}
+
+.title {
+  color: white;
+  text-align: left;
+  float: left;
+  margin: 15px 0px 10px 5px;
+  font-size: 40px;
+  font-family: 'Noto Serif JP', sans-serif;
+}
+
+.header-navigation {
+  text-align: right;
+  height: 60px;
+}
+
+.header-navigation ul {
+  margin: 10px 25px;
+  letter-spacing: -100px
+}
+
+.header-navigation ul li {
+    letter-spacing: initial;
+    float: right;
+    display: block;
+    height: 100px;
+    margin: 25px 0px 0px 0px;
+}
+
+.header-navigation ul li a {
+  text-align: center;
+  color: white;
+  font-family: 'Noto Serif JP', sans-serif;
+}
+
+.header-navigation ul li a.login, .header-navigation ul li a.signup {
+    text-align: center;
+    margin: 0px 5px;
+    color: white;
+    font-family: 'Noto Serif JP', sans-serif;
+  }
+
+.signup-title {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  margin: 30px 0 0 0;
+}
+
+.header-navigation ul .user_li {
+  width: 160px;
+}
+
+.user_menu {
+  width: 160px;
+  border: 1px solid #585858;
+}
+.user_menu a {
+	display: block;
+	padding: 5px;
+	text-decoration: none;
+	color: black;
+	line-height: 1;
+}
+.user_menu label {
+	display: block;
+	position: relative;
+	margin: 0 0 2px 0;
+	padding: 11px;
+	line-height: 1;
+	color: white;
+	background: #95a84e;
+    cursor: pointer;
+    text-align: center;
+}
+
+.user_menu label:hover {
+  background: #16aa56;
+}
+
+
+.user_menu label::before {
+	position: absolute;
+	content: '▼';
+	color: white;
+	right: 0.5em;
+	top: 25%;
+}
+
+.user_menu input {
+	display: none;
+}
+
+.user_menu #link1 {
+	margin: 0;
+	padding: 0;
+	background: black;
+	list-style: none;
+}
+
+.user_menu #link2 {
+	margin: 0;
+	padding: 0;
+	background: black;
+	list-style: none;
+}
+
+.header-navigation ul .user_menu #link1, .header-navigation ul .user_menu #link1 li {
+	overflow-y: hidden;
+	max-height: 0;
+    transition: all 0.5s;
+    margin: 0;
+}
+
+.header-navigation ul .user_menu #link2, .header-navigation ul .user_menu #link2 li {
+    overflow-y: hidden;
+	max-height: 0;
+    transition: all 0.5s;
+    margin: 0;
+}
+
+/*リストが増えたらULごとに追加してください*/
+#user_menu_bar1:checked + #link1 {
+    max-height: 100px;
+    width: 160px;
+    opacity: 1;
+}
+
+#user_menu_bar2:checked + #link2 {
+    max-height: 100px;
+    width: 160px;
+    opacity: 1;
+  }
+
+#user_menu_bar1:checked + #link1 li {
+  max-height: 30px;
+  width: 160px;
+  opacity: 1;
+}
+
+#user_menu_bar2:checked + #link2 li {
+    max-height: 30px;
+    width: 160px;
+    opacity: 1;
+  }
+
+.base-header .header-navigation #link1 li {
+    position: relative;
+    text-decoration: none;
+    font-family: 'Noto Serif JP', sans-serif;
+    border-bottom: 1px solid #585858;
+}
+
+.base-header .header-navigation #link2 li {
+    position: relative;
+    text-decoration: none;
+    font-family: 'Noto Serif JP', sans-serif;
+    border-bottom: 1px solid #585858;
+}
+
+footer {
+    background-color: black;
+    color:  white;
+}
+
+.footer-navigation {
+    text-align: right;
+}
+
+.footer-navigation ul {
+    width: 100%;
+}
+
+.footer-navigation ul li {
+    display: inline-block;
+    width: 300px;
+    text-align: left;
+}
+
+.footer-navigation #admin-info .mini-title {
+    text-align: center;
+    color:  white;
+    background-color: rgb(78, 77, 77);
+}
+
+.footer-navigation #admin-info p {
+    margin-bottom: 0;
+    border-bottom: solid 1px rgb(78, 77, 77);
+}
+
+#copyright {
+    text-align: center;
+}

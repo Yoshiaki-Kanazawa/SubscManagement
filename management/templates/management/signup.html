@@ -1,0 +1,55 @@
+{% extends 'management/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- CSS -->
+<link href="{% static 'signup_style.css' %}" type="text/css" rel="stylesheet">
+
+<h1 class="signup-title">Sign up</h1>
+<div id="signup">
+    <form method="post" action="{% url 'management:signup' %}"　name='form-signup'>
+        {% csrf_token %}
+        <table>
+            <tr class="signup-input">
+                <td>
+                    <p>ユーザー名：</p>
+                </td>
+                <td>
+                    <div id="user">{{ form.username }}</div>
+                </td>
+            </tr>
+            <tr class="signup-input">
+                <td>
+                    <p>パスワード：</p>
+                </td>
+                <td>
+                    <div id="pass">{{ form.password1 }}</div>
+                </td>
+            </tr>
+            <tr class="signup-input">
+                    <td>
+                        <p>パスワード(確認)：</p>
+                    </td>
+                    <td>
+                        <div id="pass">{{ form.password2 }}</div>
+                    </td>
+                </tr>
+        </table>
+        <input type="submit" value="Sign up" />
+    </form>
+</div>
+
+<div class="error-message">
+    {% if form.errors %}
+        ユーザー名もしくはパスワードが不正です。<br>
+        以下の条件を満たすように入力してください。<br>
+        <ul>
+            <li>パスワードが他の入力値と似ていない。</li>
+            <li>よくあるパスワードと一致していない。</li>
+            <li>パスワードの長さが8文字以上である。</li>
+            <li>パスワードが数値のみでない。</li>
+        </ul>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'management/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- CSS -->
+<link href="{% static 'detail_style.css' %}" type="text/css" rel="stylesheet">
+
+<script type="text/javascript">
+    function deleteConfirm(){
+        var result = confirm('{{ service.service_name }}を削除しても宜しいですか？');
+        if( result ) {
+            location.href = "{% url 'management:delete' serviceid %}";
+        }
+        else {
+            alert('キャンセルしました。');
+        }
+    }
+</script>
+
+<h1 class="detail-title">Update Service</h1>
+<div id="detail">
+    <form method="post" action="{% url 'management:update' serviceid %}"　name='form-detail' id='detail-form'>
+        {% csrf_token %}
+        <table>
+            <tr class="detail-input">
+                <td>
+                    <p>サービス名：</p>
+                </td>
+                <td>
+                    <div id="service">{{ form.servicename }}</div>
+                </td>
+            </tr>
+            <tr class="detail-input">
+                <td>
+                    <p>月額料金　：</p>
+                </td>
+                <td>
+                    <div id="price">{{ form.price }}</div>
+                </td>
+            </tr>
+            <tr class="detail-input">
+                    <td>
+                        <p>利用開始日：</p>
+                    </td>
+                    <td>
+                        <div id="start-date">{{ form.startdate }}</div>
+                    </td>
+                </tr>
+        </table>
+        <input type="submit" value="update" />
+    </form>
+    <form method="get" name='form-delete' id='delete-form'>
+        <input name="btn-delete" type="button" value="delete" onClick="deleteConfirm()" />
+    </form>
+</div>
+
+<div class="error-message">
+    {% if form.errors %}
+        サービス名もしくは月額料金が不正です。<br>
+        以下の条件を満たすように入力してください。<br>
+        <ul>
+            <li>サービス名は１文字以上25文字以下である。</li>
+            <li>月額料金は100000円以下である。</li>
+        </ul>
+    {% endif %}
+</div>
+
+{% endblock %}

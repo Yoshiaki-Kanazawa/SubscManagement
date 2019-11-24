@@ -1,0 +1,33 @@
+{% extends 'management/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- CSS -->
+<link href="{% static 'login_style.css' %}" type="text/css" rel="stylesheet">
+
+<div id="login">
+    <form method="post" action="{% url 'login' %}"　name='form-login'>
+        {% csrf_token %}
+        <span class="fontawesome-user"></span>
+        <div id="user">{{ form.username }}</div>
+        <span class="fontawesome-lock"></span>
+        <div id="pass">{{ form.password }}</div>
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+</div>
+
+{% if form.errors %}
+<p class="error">入力したユーザー名もしくはパスワードが間違っています。もう一度入力してください。</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p lass="error">Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p class="error">ログインしてください。</p>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

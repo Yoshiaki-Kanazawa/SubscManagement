@@ -1,0 +1,96 @@
+{% extends 'management/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<!-- CSS -->
+<link href="{% static 'management_style.css' %}" type="text/css" rel="stylesheet">
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $('#service-table').tablesorter();
+    });
+
+    function calcTotal(start_date, price){
+        var now_date = new Date();
+        var diffMonths = (now_date.getFullYear() - start_date.getFullYear()) * 12;
+        diffMonths -= start_date.getMonth() + 1;
+        diffMonths += now_date.getMonth();
+        return (diffMonths <= 0 ? 0 : diffMonths + 1) * price;
+    };
+</script>
+
+<h1 class="management-title1">現在のご利用状況</h1>
+<div class="table1" align="center">
+        <table>
+            <tr>
+                <th>サービス数</th>
+                <th>合計月額料金</th>
+                <th>累計金額(先月迄)</th>
+            </tr>
+            <tr>
+                <td width="130" align="right" id="service-num">{{ serviceNum }}</td>
+                <td width="160" align="right">{{ monthTotal|intcomma }} 円</td>
+                <td width="190" align="right">
+                    <script type="text/javascript">
+                        total = 0;
+                    </script>
+                    {% for service in services %}
+                        <script type="text/javascript">
+                            var start_date = new Date("{{ service.start_date.isoformat }}");
+                            var price = {{ service.price }};
+                            var subTotal = calcTotal(start_date, price);
+                            total += subTotal;
+                        </script>
+                    {% endfor %}
+                    <script type="text/javascript">
+                        document.write(total.toLocaleString());
+                    </script>
+                    円
+                </td>
+            </tr>
+        </table>
+    </div>
+
+<h1 class="management-title2">ご利用中のサブスクリプション(詳細)</h1>
+<div class="table1" align="center">
+    <table id="service-table" class="tablesorter">
+        <thead>
+            <tr>
+                <th>サービス名</th>
+                <th>月額料金</th>
+                <th>利用開始日</th>
+                <th>累計金額(先月迄)</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td width="200" align="left" id="service-name"><a href="{% url 'management:detail' service.id %}">{{ service.service_name }}</a></td>
+                <td width="130" align="right">{{ service.price|intcomma }} 円</td>
+                <td width="130" align="right">{{ service.start_date|date:"Y/n/j" }}</td>
+                <td width="190" align="right">
+                    <script type="text/javascript">
+                        var start_date = new Date("{{ service.start_date.isoformat }}");
+                        var price = {{ service.price }};
+                        var subTotal = calcTotal(start_date, price);
+                        total += subTotal;
+                        document.write(subTotal.toLocaleString());
+                    </script>
+                    円
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <form method="get" action="{% url 'management:addService' %}"　name='form-add'>
+        <input type="submit" value="add Service" id="add-button" />
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'management/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- CSS -->
+<link href="{% static 'addService_style.css' %}" type="text/css" rel="stylesheet">
+
+<h1 class="addService-title">Add Service</h1>
+<div id="addService">
+    <form method="post" action="{% url 'management:addService' %}"　name='form-addService'>
+        {% csrf_token %}
+        <table>
+            <tr class="addService-input">
+                <td>
+                    <p>サービス名：</p>
+                </td>
+                <td>
+                    <div id="service">{{ form.servicename }}</div>
+                </td>
+            </tr>
+            <tr class="addService-input">
+                <td>
+                    <p>月額料金　：</p>
+                </td>
+                <td>
+                    <div id="price">{{ form.price }}</div>
+                </td>
+            </tr>
+            <tr class="addService-input">
+                    <td>
+                        <p>利用開始日：</p>
+                    </td>
+                    <td>
+                        <div id="start-date">{{ form.startdate }}</div>
+                    </td>
+                </tr>
+        </table>
+        <input type="submit" value="Add" />
+    </form>
+</div>
+
+<div class="error-message">
+    {% if form.errors %}
+        サービス名もしくは月額料金が不正です。<br>
+        以下の条件を満たすように入力してください。<br>
+        <ul>
+            <li>サービス名は１文字以上25文字以下である。</li>
+            <li>月額料金は100000円以下である。</li>
+        </ul>
+    {% endif %}
+</div>
+
+{% endblock %}

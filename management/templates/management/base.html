@@ -1,0 +1,72 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>SubscriptionManagement</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link href="{% static 'header_style.css' %}" type="text/css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  <body>
+    <header class="base-header">
+        <p class="title">Subscription Management</p>
+        <nav class="header-navigation">
+            <ul>
+                {% if user.is_authenticated %}
+                <li class="user_li">
+                    <div class="user_menu">
+                        <label for="user_menu_bar1">{{ user.username }}</label>
+                        <input type="radio" name="radio" id="user_menu_bar1" class="accordion" />
+                        <ul id="link1">
+                            <li><a href="{% url 'management:passwordChange' %}">Change Password</a></li>
+                            <li><a href="{% url 'logout' %}" class="logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="user_li">
+                    <div class="user_menu">
+                        <label for="user_menu_bar2">サイト内リンク</label>
+                        <input type="radio" name="radio" id="user_menu_bar2" class="accordion" />
+                        <ul id="link2">
+                            <li><a href="{% url 'management:management' %}">Top</a></li>
+                        </ul>
+                    </div>
+                </li>
+                {% else %}
+                <li><a href="{% url 'login' %}" class="login">Login</a></li>
+                <li><a href="{% url 'management:signup' %}" class="signup">Sign up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <nav class="footer-navigation">
+            <ul>
+                <li id="admin-info">
+                    <div class="mini-title">管理者情報</div>
+                    <p>管理者　：　Yoshiaki Kanazawa</p>
+                    <p>Mail 　　：　k.yoshiaki1226@gmail.com</p>
+                </li>
+            </ul>
+        </nav>
+        <div id="copyright">
+            All Right Reserved. Yoshiaki Kanazawa
+        </div>
+    </footer>
+  </body>
+</html>
