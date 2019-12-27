@@ -69,9 +69,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'subscManagement',
-        'USER': 'root',
-        'HOST': '',
-        'PORT': '',
+        'USER': 'apuser',
+        'PASSWORD': 'password',
+        'HOST': '172.20.0.3',
+        'PORT': '3306',
         'ATOMIC_REQUESTS': True
     }
 }
