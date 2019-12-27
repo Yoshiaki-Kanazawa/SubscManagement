@@ -15,7 +15,7 @@ SECRET_KEY = ')zby2emfd^jfw1naghxa26(w+sx*^ucpo#+)uv0m^%#wz%qiwf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'subscManagement',
         'USER': 'apuser',
         'PASSWORD': 'password',
-        'HOST': '172.20.0.3',
+        'HOST': 'db',
         'PORT': '3306',
         'ATOMIC_REQUESTS': True
     }

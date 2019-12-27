@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+body {
+  background: #2c3338;
+  color: #606468;
+  font: 'Open Sans', sans-serif;
+  margin: 0;
+}
+
+input {
+  border: none;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+  padding: 0;
+  -webkit-appearance: none;
+}
+
+.error {
+  line-height: 1.5em;
+  color: red;
+  text-align: center;
+}
+
+after { clear: both; }
+
+#logout {
+  margin: 50px auto;
+  width: 340px;
+  min-height: 320px
+}
+
+.error-message {
+  margin-right: auto;
+  margin-left: 440px;
+  color: white;
+  font-size: 20px;
+}
+
+.error-message ul {
+  margin: 15px 0;
+}
