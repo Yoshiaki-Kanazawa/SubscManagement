@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'subscManagement',
         'USER': 'apuser',
         'PASSWORD': 'password',
-        'HOST': 'db',
+        'HOST': 'mysql-service',
         'PORT': '3306',
         'ATOMIC_REQUESTS': True
     }

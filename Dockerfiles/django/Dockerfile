@@ -3,5 +3,5 @@ ENV LANG en_US.utf8
 ADD requirements.txt /
 RUN apt-get update \
     && pip install -r requirements.txt
-COPY ./app /
+COPY ./app /app
 WORKDIR /app
