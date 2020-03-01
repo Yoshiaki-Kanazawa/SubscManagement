@@ -1,1 +1,4 @@
 # SubscManagement
+
+現在SubscManagement_manifestのリポジトリに合わせてDB接続設定を入れているためdocker-composeでは動きません。
+今後、両環境で動作するように改修予定。
