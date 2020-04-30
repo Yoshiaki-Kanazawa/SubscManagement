@@ -29,6 +29,3 @@ services:
         tty: true
         depends_on:
             - db
-
-volumes:
-    db-data:
